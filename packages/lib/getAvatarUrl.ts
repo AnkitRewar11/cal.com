@@ -19,3 +19,19 @@ export const getUserAvatarUrl = (user: Pick<User, "avatarUrl"> | undefined) => {
   }
   return CAL_URL + AVATAR_FALLBACK;
 };
+
+/**
+ * Ensures that the URL string has 'http://' or 'https://' prepended.
+ * If the protocol is missing, it defaults to 'https://'.
+ */
+export const ensureProtocol = (url: string | null | undefined): string => {
+  if (!url) {
+    return "";
+  }
+  // Check if the URL already starts with 'http' (http or https)
+  if (url.startsWith("http")) {
+    return url;
+  }
+  // If not, prepend 'https://'
+  return `https://${url}`;
+};
